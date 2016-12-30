@@ -4,12 +4,13 @@ Ansible Role to install CloudWatchMonitoringScripts and Monitor Memory and Disk 
 Role Variables
 --------------
 
-Following variables need to be defined:
+In vars/default.yaml file there are default variables specification.
 
-- cloud_watch_monitoring_path - Path where scripts will be downloaded and unarchieved
-- cron_specs - {name: "Name of the task", minute: "*/5", hour: "*", job: "{{cloud_watch_monitoring_path}}/aws-scripts-mon/mon-put-instance-data.pl --disk-space-util --disk-path=/mnt/data --from-cron --aws-access-key-id=AWS_KEY --aws-secret-key=AWS_SECRET_KEY"}
-
-Note: There are no default values for the above mentioned variables.
+If the EC2 has no role to send metric and you have an access and secret key override _cron\_specs_ variable as follow:
+```
+cron_specs:
+    -{name: "Name of the task", minute: "*/5", hour: "*", job: "{{cloud_watch_monitoring_path}}/aws-scripts-mon/mon-put-instance-data.pl --disk-space-util --disk-path=/mnt/data --from-cron --aws-access-key-id=AWS_KEY --aws-secret-key=AWS_SECRET_KEY"}
+```
 
 Dependencies
 ------------
