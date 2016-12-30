@@ -22,7 +22,7 @@
   get_url: url={{ archive_url }} dest={{ cloud_watch_monitoring_path }}/{{ archive_url.split('/')[-1] }}
 
 - name: Unarchive zip
-  command: unzip {{ cloud_watch_monitoring_path }}/CloudWatchMonitoringScripts-1.2.1.zip
+  unarchive: src={{ cloud_watch_monitoring_path }}/{{ archive_url.split('/')[-1] }} dest={{ cloud_watch_monitoring_path }} copy=no 
 
 - name: Delete zip file
   file: path={{ cloud_watch_monitoring_path }}/{{ archive_url.split('/')[-1] }} state=absent
